@@ -2,8 +2,8 @@
 
 - Balkarandeep Singh
 - Did website setup
-  -Back End: flask
-  -Database: TinyDB, noSQL
+  - Back End: flask
+  - Database: TinyDB, noSQL
 
   For TinyDB just run commonad pip install tinydb
 
