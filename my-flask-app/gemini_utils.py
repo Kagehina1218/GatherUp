@@ -1,6 +1,12 @@
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os 
 
-API_KEY = None
+load_dotenv()
+
+
+API_KEY = os.getenv("Api_key")
+
 if not API_KEY:
     raise ValueError("Google API key not set yet")
 
