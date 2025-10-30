@@ -24,6 +24,20 @@ def demo():
 
     return render_template("demo.html", text = responseText or "")
 
+@app.route("/loginhere", methods = ["POST"])
+def login():
+    try:
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        result = create_user(username, password)
+
+        print (result)
+
+        
+    except Exception as e:
+        print(e)
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
