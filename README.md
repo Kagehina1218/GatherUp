@@ -9,12 +9,12 @@ Balkarandeep Singh's Contriubtion
 - Natural Lanauge Processing (NLP) integration and prompt parsed to Gemini
 
 - Requriments:
-- pip install
-    - google gemini
-    - flask
-    - speech_recognition
-    - pyaudio
- 
-- Create .env
-  -Put api keys in format: API_KEY = ""  
- 
+  - pip install
+      - google gemini
+      - flask
+      - speech_recognition
+      - pyaudio
+   
+  - Create .env
+    -Put api keys in format: API_KEY = ""  
+   
