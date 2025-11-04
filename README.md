@@ -1,6 +1,6 @@
 # GatherUp
 
-Balkarandeep Singh's Contriubtion 
+Balkarandeep Singh's Contribution 
 - website setup (Status: Done)
   - Back End: flask 
   - Database: TinyDB, noSQL
