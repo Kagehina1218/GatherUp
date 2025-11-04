@@ -2,8 +2,10 @@
 <html>
     <head>
         <title> Testing Page</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     </head>
     <body>
+        {% include 'navbar.html'%}
         <h1>Working on testing here</h1>
         {{ text }}
 
