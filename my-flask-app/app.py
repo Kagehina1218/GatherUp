@@ -23,7 +23,7 @@ def demo():
 
     text = nlp()
     print(text)
-    responseText = generate_schedule("give me a json response with a random schedule in less than 100 words")
+    responseText = generate_schedule(text)
 
     return render_template("demo.html", text = responseText or "")
 
