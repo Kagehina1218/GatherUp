@@ -1,11 +1,20 @@
 # GatherUp
 
-- Balkarandeep Singh
-- Did website setup
-  - Back End: flask
+Balkarandeep Singh's Contriubtion 
+- website setup (Status: Done)
+  - Back End: flask 
   - Database: TinyDB, noSQL
+    - For TinyDB just run commonad pip install tinydb
+- Gemini integration (Status: Done)
+- Natural Lanauge Processing (NLP) integration and prompt parsed to Gemini
 
-  For TinyDB just run commonad pip install tinydb
-
-- Also did basic gemini integration
-  - need to get a new api key
+- Requriments:
+- pip install
+    - google gemini
+    - flask
+    - speech_recognition
+    - pyaudio
+ 
+- Create .env
+  -Put api keys in format: API_KEY = ""  
+ 
