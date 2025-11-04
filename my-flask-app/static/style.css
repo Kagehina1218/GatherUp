@@ -1,0 +1,99 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  background-color: #F0F4E3; /* neutral light background */
+  color: #2C3E1F; /* dark text */
+}
+
+.navbar {
+  background-color: #A4C639; /* primary green */
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.nav-page {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-page ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 50px;
+}
+
+.nav-page a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.nav-page a:hover {
+  color: #86AD2D; /* primary dark hover */
+}
+
+.nav-buttons {
+  margin-left: auto; /* stick to right */
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-login {
+  background-color: white;
+  color: #86AD2D; /* dark green text */
+  border: 2px solid #A4C639; /* primary green border */
+}
+
+.btn-login:hover {
+  background-color: #86AD2D;
+  color: white;
+}
+
+.btn-signup {
+  background-color: #8BC34A; /* accent green */
+  color: white;
+  border: 2px solid #86AD2D;
+}
+
+.btn-signup:hover {
+  background-color: #86AD2D; /* primary dark */
+  border-color: #86AD2D;
+}
+
+/* Optional: profile icon */
+.profile-icon {
+  background-color: white;
+  color: #86AD2D;
+  border: 2px solid #A4C639;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.profile-icon:hover {
+  background-color: #86AD2D;
+  color: white;
+}
