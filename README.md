@@ -7,6 +7,7 @@ Balkarandeep Singh's Contribution
     - For TinyDB just run commonad pip install tinydb
 - Gemini integration (Status: Done)
 - Natural Lanauge Processing (NLP) integration and prompt parsed to Gemini
+  -Uses Google free speech to text api 
 
 - Requriments:
   - pip install
