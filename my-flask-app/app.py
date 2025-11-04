@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify, session, url_for, re
 import json
 from db_utils import create_user, check_user
 from gemini_utils import generate_schedule
-
+from nlp_utils import nlp
 
 app = Flask(__name__)
 app.secret_key = "secretKey222"
@@ -20,6 +20,9 @@ def home():
 
 @app.route("/demo" , methods = ["GET"])
 def demo():
+
+    text = nlp()
+    print(text)
     responseText = generate_schedule("give me a json response with a random schedule in less than 100 words")
 
     return render_template("demo.html", text = responseText or "")
@@ -57,14 +60,11 @@ def signup():
             username = request.form.get('username')
             password = request.form.get('password')
 
-            result = check_user(username, password)
+            result = create_user(username, password)
 
             print("inside post--", result)
 
-            if not result:
-                result = create_user(username, password)
-                print(result)
-                return redirect(url_for('demo'))
+            return redirect(url_for('demo'))
             
         except Exception as e:
             print(e)
