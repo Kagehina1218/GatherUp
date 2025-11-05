@@ -1,12 +1,12 @@
 body {
   font-family: "Segoe UI", sans-serif;
   margin: 0;
-  background-color: #F0F4E3; 
+  background-color: #cdcae0; 
   color: #2C3E1F; 
 }
 
 .navbar {
-  background-color: #A4C639; 
+  background-color: #b5aeec; 
   display: flex;
   align-items: center;
   padding: 10px 30px;
@@ -38,7 +38,7 @@ body {
 }
 
 .nav-page a:hover {
-  color: #86AD2D; 
+  color: #b5aeec; 
 }
 
 .nav-buttons {
@@ -58,23 +58,23 @@ body {
 
 .btn-login {
   background-color: white;
-  color: #86AD2D;
-  border: 2px solid #A4C639; 
+  color: #2d2fad;
+  border: 2px solid #b5aeec; 
 }
 
 .btn-login:hover {
-  background-color: #86AD2D;
+  background-color: #8f85d9;
   color: white;
 }
 
 .btn-signup {
-  background-color: #8BC34A; 
-  color: white;
-  border: 2px solid #86AD2D;
+  background-color: white; 
+  color: #2d2fad;
+  border: 2px solid #b5aeec;
 }
 
 .btn-signup:hover {
-  background-color: #86AD2D; 
-  border-color: #86AD2D;
+  background-color: #8f85d9;
+  color: white;
 }
 

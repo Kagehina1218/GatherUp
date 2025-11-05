@@ -18,34 +18,37 @@ def home():
 
     return render_template("login.html")
 
-@app.route("/demo" , methods = ["GET"])
+@app.route("/demo" , methods = ["GET", "POST"])
 def demo():
+    responseText = None
 
-    text = nlp()
-    print(text)
-    responseText = generate_schedule(text)
+    if request.method == "POST":
+        text = nlp()
+        print(text)
+        responseText = generate_schedule(text)
 
     return render_template("demo.html", text = responseText or "")
 
 
-@app.route("/loginhere", methods = ["POST"])
+@app.route("/loginhere", methods = ["POST", "GET"])
 def login():
-    try:
-        username = request.form.get('username')
-        password = request.form.get('password')
+    if request.method == "POST":
+        try:
+            username = request.form.get('username')
+            password = request.form.get('password')
 
-        result = check_user(username, password)
+            result = check_user(username, password)
 
-        print (result)
+            print (result)
 
-        if result:
-            return redirect(url_for('demo'))
-        
+            if result:
+                return redirect(url_for('demo'))
+            
 
-        
-    except Exception as e:
-        print(e)
-
+            
+        except Exception as e:
+            print(e)
+     
     return redirect(url_for('home'))
 
 

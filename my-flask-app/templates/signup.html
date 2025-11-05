@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Gather up Signup </title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
     </head>
     <body>
 
@@ -9,7 +11,7 @@
         <form action = "/signup" method = "POST">
             <input type = "text" name = "username"><br>
             <input type = "text" name = "password"> <br>
-            <button type = "submit" value = "Signup"> Signup</button>
+            <button class="btn btn-login" type = "submit" value = "Signup"> Signup</button>
         </form>
     </body>
 </html>
