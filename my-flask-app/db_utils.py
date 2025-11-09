@@ -30,3 +30,15 @@ def update_schedule(username, schedule):
 
     users_table.update({"schedule": schedule}, User.username == username)
     return {"message": "Schedule updated successfully!", "status": "success"}
+
+def get_schedule(username):
+
+    user = users_table.get(User.username == username)
+    
+    if not user:
+        print("User not found")
+        return None
+    
+    sch = user.get('schedule', [])
+
+    return sch

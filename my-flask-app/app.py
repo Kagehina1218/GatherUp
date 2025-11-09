@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, jsonify, session, url_for, redirect
+from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
 
 import json
-from db_utils import create_user, check_user
+from db_utils import create_user, check_user, update_schedule, get_schedule
 from gemini_utils import generate_schedule
 from nlp_utils import nlp
 
@@ -18,6 +18,13 @@ def home():
 
     return render_template("login.html")
 
+
+@app.route("/mySchedule", methods = ["GET"])
+def mySchedule():
+    myS = get_schedule(session.get('username')) or ""
+    print("trying to get schedule")
+    return render_template("schedule.html", mySchedule = myS)
+
 @app.route("/demo" , methods = ["GET", "POST"])
 def demo():
     responseText = None
@@ -25,10 +32,31 @@ def demo():
     if request.method == "POST":
         text = nlp()
         print(text)
+        
+        responseText = None
+
+        if text:
+            text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period)}"
+
         responseText = generate_schedule(text)
+    
+        start = responseText.find('[')
+        end = responseText.rfind(']')
+        schText = responseText[start:end + 1]
+        schObj = json.loads(schText)
+        
+        res = update_schedule(session.get('username'), schObj)
+        
+        
+        print(res, type(res))
 
     return render_template("demo.html", text = responseText or "")
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    print("user logged out")
+    return redirect(url_for('login'))
 
 @app.route("/loginhere", methods = ["POST", "GET"])
 def login():
@@ -39,9 +67,11 @@ def login():
 
             result = check_user(username, password)
 
-            print (result)
+            print(result)
 
             if result:
+                session['username'] = username
+                print("session user: ", session.get('username'))
                 return redirect(url_for('demo'))
             
 
