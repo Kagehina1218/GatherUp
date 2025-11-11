@@ -1,13 +1,13 @@
 <nav class="navbar">
   <div class="nav-page">
     <ul>
-      <li><a>Calendar</a></li>
-      <li><a>Friends</a></li>
+      <li><a href = "{{url_for('calendar')}}">Calendar</a></li>
+      <li><a href = "{{url_for('friends')}}">Friends</a></li>
     </ul>
   </div>
 
   <div class="nav-buttons">
-    <a class="btn btn-login" href = "{{ url_for('login')}}">Login</a>
-    <a class="btn btn-signup" href = "{{ url_for('signup')}}" >Signup</a>
+    <a class="btn btn-log" href = "{{ url_for('login')}}">Login</a>
+    <a class="btn btn-log" href = "{{ url_for('signup')}}" >Signup</a>
   </div>
 </nav>

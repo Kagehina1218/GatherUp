@@ -38,7 +38,7 @@ body {
 }
 
 .nav-page a:hover {
-  color: #b5aeec; 
+  color: #2d2fad; 
 }
 
 .nav-buttons {
@@ -56,25 +56,39 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn-login {
-  background-color: white;
-  color: #2d2fad;
-  border: 2px solid #b5aeec; 
-}
-
-.btn-login:hover {
-  background-color: #8f85d9;
-  color: white;
-}
-
-.btn-signup {
+.btn-log {
   background-color: white; 
   color: #2d2fad;
   border: 2px solid #b5aeec;
 }
 
-.btn-signup:hover {
+.btn-log:hover {
   background-color: #8f85d9;
   color: white;
 }
+
+.add-btn {
+  background-color: #2d2fad; 
+  color: white;
+  border: 2px solid #b5aeec;
+}
+
+.search-bar i {
+  position: absolute;
+  left: 20px;
+  top: 11%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+}
+
+.search-bar input[type="text"] {
+  float:left;
+  padding: 6px 12px 8px 35px;
+  border: none;
+  margin-top: 8px;
+  margin-left: 16px;
+  font-size: 17px;
+}
+
 

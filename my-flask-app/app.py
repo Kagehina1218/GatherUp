@@ -29,7 +29,7 @@ def demo():
 
     return render_template("demo.html", text = responseText or "")
 
-
+# Route to login page
 @app.route("/loginhere", methods = ["POST", "GET"])
 def login():
     if request.method == "POST":
@@ -51,9 +51,6 @@ def login():
      
     return redirect(url_for('home'))
 
-
-
-
 @app.route("/signup", methods = ["POST", "GET"])
 def signup():
     print("inside signup")
@@ -74,6 +71,16 @@ def signup():
     
     return render_template('signup.html')
 
+# Route to Friends page
+@app.route("/friends", methods = ["POST", "GET"])
+def friends():
+    print("inside friend page")
+    return render_template('friends.html')
+
+@app.route("/calendar", methods = ["POST", "GET"])
+def calendar():
+    print("inside calendar page")
+    return render_template('calendar.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
