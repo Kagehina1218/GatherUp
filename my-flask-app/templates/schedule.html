@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Testing Page</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='schedule.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+    </head>
+    <body>
+        {% include 'navbar.html'%}
+
+        <br>
+
+        <div class = "content" ><h2 class = 'card'>My Schedule Below </h2></div>
+
+
+        <div class = 'content'>
+        {% for activity in mySchedule %}
+            <div class = "card">
+                <h3>Activity {{activity['Activity Number'] }}</h3>
+                <p><strong>Description:</strong> {{ activity['Description'] }}</p>
+                <p><strong>Time:</strong> {{ activity['Time Period'] }}</p>
+            </div>
+        {% endfor %}
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,82 @@
+.aboutus-box {
+  color: #1e1b4b;
+  text-align: left;
+  padding: 2rem;
+  max-width: 500px;
+  margin-left: 130px;
+}
+
+.aboutus-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.aboutus-header i {
+  font-size: 2.5rem;
+  color: #4f46e5; 
+}
+
+.aboutus-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4f46e5;
+  margin: 0;
+}
+
+.aboutus-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.aboutus-descrip {
+  color: #475569;
+  font-size: 1rem;
+  max-width: 550px;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+
+.aboutus-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.aboutus-feature,
+.aboutus-features > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+  max-width: 500px;
+  margin: 0;
+}
+
+.aboutus-feature i,
+.aboutus-features > div > i {
+  font-size: 1.5rem;
+  color: #4f46e5;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.aboutus-feature h3,
+.aboutus-features > div h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.aboutus-feature p,
+.aboutus-features > div p {
+  font-size: 0.9rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.5;
+}
