@@ -6,14 +6,24 @@
     </head>
     <body>
         {% include 'navbar.html' %}
-        <form class="search-bar" method="GET" action="{{url_for('friends')}}">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="      Search ...">
-            <button class="btn btn-add" type = "submit">Add</button> 
-        </form>
 
         <div class="friend-grp"></div>
         <div class="friend"></div>
         <div class="calendar"></div>
+
+        {%  if friendList %}
+            <ul>
+            {% for friend in friendList %}
+              <li>
+                  {{ friend }} -
+                  <a href="{{ url_for('friend_schedule', friend_username=friend) }}">View Schedule</a>
+            </li>
+            {% endfor %}
+            </ul>
+        
+            {% else %}
+        <p>No friends yet!</p>
+        {%  endif%}
+
     </body>
 </html>

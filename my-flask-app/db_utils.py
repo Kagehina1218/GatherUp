@@ -10,7 +10,7 @@ def create_user(username, password):
     if existing:
         return {"message": "user already exists!", "status": "error"}
 
-    users_table.insert({"username": username, "password": password, "schedule": []})
+    users_table.insert({"username": username, "password": password, "schedule": [], "viewer_on": []})
     return {"message": "Signup successful!", "status": "success"}
 
 
@@ -42,3 +42,34 @@ def get_schedule(username):
     sch = user.get('schedule', [])
 
     return sch
+
+def add_viewer(username, friendUsername):
+
+    if not friendUsername or friendUsername == username:
+        return False
+
+    friend = users_table.get(User.username == friendUsername)
+    if not friend:
+        return False
+
+    viewers_list = friend.get('viewer_on', [])
+
+    if username not in viewers_list:
+        viewers_list.append(username)
+        users_table.update({'viewer_on': viewers_list}, User.username == friendUsername)
+
+    return True
+
+def viewableFriends(username):
+    
+    user = users_table.get(User.username == username)
+    
+    if not user:
+        print("User not found")
+        return None
+    
+    friendlist = user.get('viewer_on', [])
+
+    return friendlist
+    
+    

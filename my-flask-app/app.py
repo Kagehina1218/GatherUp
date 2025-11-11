@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
 
 import json
-from db_utils import create_user, check_user, update_schedule, get_schedule
+from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends
 from gemini_utils import generate_schedule
 from nlp_utils import nlp
 
@@ -94,6 +94,9 @@ def signup():
 
             print("inside post--", result)
 
+            session['username'] = username
+            print("session user: ", session.get('username'))
+
             return redirect(url_for('demo'))
             
         except Exception as e:
@@ -101,11 +104,53 @@ def signup():
     
     return render_template('signup.html')
 
-# Route to Friends page
-@app.route("/friends", methods = ["POST", "GET"])
-def friends():
+
+@app.route("/addViewer", methods = ["POST"])
+def addViewer():
+    if request.method == "POST":
+        try: 
+            user = session.get('username')
+            friend = request.form.get('friend')
+
+            if user == friend:
+                print("can't add yourself")
+                return redirect(url_for('demo'))
+            
+            result = add_viewer(user, friend)
+
+            if result:
+                print("Added Viewer")    
+                return redirect(url_for('friends'))
+            print("Didn't add the viewer")  
+
+            return redirect(url_for('demo'))
+              
+        except Exception as e:
+            print(e)
+    
     print("inside friend page")
-    return render_template('friends.html')
+    return redirect(url_for('demo'))
+
+@app.route("/friends", methods = ["GET"])
+def friends():
+    listf = viewableFriends(session.get("username")) or []
+    return render_template("friends.html", friendList = listf)
+
+
+@app.route("/friend_schedule/<friend_username>", methods = ["GET"])
+def friend_schedule(friend_username):
+    if not viewableFriends(session.get('username')):
+        print("1Not allowed")
+        return redirect(url_for("friends"))
+        
+    if friend_username in viewableFriends(session.get("username")):
+        myS = get_schedule(friend_username) or ""
+        print("trying to get schedule")
+        return render_template("schedule.html", mySchedule = myS)
+    print("Not allowed")
+    return redirect(url_for("friends"))
+
+
 
 @app.route("/calendar", methods = ["POST", "GET"])
 def calendar():
