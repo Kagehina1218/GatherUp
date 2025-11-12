@@ -1,1 +1,87 @@
-{"users": {"1": {"username": "test", "password": "ka", "schedule": [{"Activity Number": 1, "Description": "Go for a walk", "Time Period": "15 minutes"}, {"Activity Number": 2, "Description": "Go to school", "Time Period": "Afternoon"}, {"Activity Number": 3, "Description": "Go out", "Time Period": "Evening"}], "viewer_on": ["bb"]}, "2": {"username": "aa", "password": "a", "schedule": [{"Activity Number": 1, "Description": "Go to school", "Time Period": "Morning"}, {"Activity Number": 2, "Description": "Come back and sleep", "Time Period": "Afternoon"}, {"Activity Number": 3, "Description": "Wake up", "Time Period": "Evening"}, {"Activity Number": 4, "Description": "Go for a walk", "Time Period": "Evening"}, {"Activity Number": 5, "Description": "Go shopping", "Time Period": "Evening"}], "viewer_on": ["test", "bb"]}, "3": {"username": "bb", "password": "b", "schedule": [], "viewer_on": ["aa"]}}}
+{
+    "users": {
+        "1": {
+            "username": "test",
+            "password": "ka",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Go for a walk",
+                    "Time Period": "15 minutes"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Go to school",
+                    "Time Period": "Afternoon"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Go out",
+                    "Time Period": "Evening"
+                }
+            ],
+
+            "viewer_on": [
+                "bb"
+            ], 
+
+            "groups": {
+                "Family": ["bb"],
+                "School": ["aa"]
+            }
+        },
+        "2": {
+            "username": "aa",
+            "password": "a",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Go to school",
+                    "Time Period": "Morning"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Come back and sleep",
+                    "Time Period": "Afternoon"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Wake up",
+                    "Time Period": "Evening"
+                },
+                {
+                    "Activity Number": 4,
+                    "Description": "Go for a walk",
+                    "Time Period": "Evening"
+                },
+                {
+                    "Activity Number": 5,
+                    "Description": "Go shopping",
+                    "Time Period": "Evening"
+                }
+            ],
+            "viewer_on": [
+                "test",
+                "bb"
+            ],
+
+            "groups": {
+                "Family": ["test"],
+                "School": ["bb"]
+            }
+        },
+        "3": {
+            "username": "bb",
+            "password": "b",
+            "schedule": [],
+            "viewer_on": [
+                "aa"
+            ],
+
+            "groups": {
+                "Family": ["test"],
+                "School": ["aa"]
+            }
+        }
+    }
+}

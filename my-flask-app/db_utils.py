@@ -72,4 +72,27 @@ def viewableFriends(username):
 
     return friendlist
     
+def viewableFriendsByGroup(username):
+    user = users_table.get(User.username == username)
+    if not user:
+        return {}
+    return user.get("groups", {})
+
+def add_friend_to_group(username, friend_username, group_name):
+    user = users_table.get(User.username == username)
+    friend = users_table.get(User.username == friend_username)
     
+    if not user or not friend or username == friend_username:
+        return {"message": "Invalid operation", "status": "error"}
+
+    groups = user.get("groups", {})
+
+    if group_name not in groups:
+        groups[group_name] = []
+
+    if friend_username not in groups[group_name]:
+        groups[group_name].append(friend_username)
+        users_table.update({"groups": groups}, User.username == username)
+
+    return {"message": f"{friend_username} added to group {group_name}", "status": "success"}
+

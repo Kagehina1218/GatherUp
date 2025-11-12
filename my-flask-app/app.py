@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
 
 import json
-from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends
+from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup
 from gemini_utils import generate_schedule
 from nlp_utils import nlp
 
@@ -133,14 +133,31 @@ def addViewer():
 
 @app.route("/friends", methods = ["GET"])
 def friends():
-    listf = viewableFriends(session.get("username")) or []
-    return render_template("friends.html", friendList = listf)
+    username = session.get("username")
+    if not username:
+        return redirect(url_for("home"))
+    
+    selected_group = request.args.get("group", None)
+
+    friend_groups = viewableFriendsByGroup(username)  # {"Family": ["bb"], "School": ["aa"], ...}
+
+    if selected_group and selected_group in friend_groups:
+        group_friends = friend_groups[selected_group]
+    else:
+        group_friends = viewableFriends(username) or []
+
+    return render_template(
+        "friends.html",
+        friendGroups=friend_groups,
+        selectedGroup=selected_group,
+        friendList=group_friends
+    )
 
 
 @app.route("/friend_schedule/<friend_username>", methods = ["GET"])
 def friend_schedule(friend_username):
     if not viewableFriends(session.get('username')):
-        print("1Not allowed")
+        print("Not allowed")
         return redirect(url_for("friends"))
         
     if friend_username in viewableFriends(session.get("username")):

@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    </head>
-    <body>
-        {% include 'navbar.html' %}
 
-        <div class="friend-grp"></div>
-        <div class="friend"></div>
-        <div class="calendar"></div>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='friends.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
 
-        {%  if friendList %}
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="search-box">
+        <form class="search-bar-friend" method="POST" action="/addViewer">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="friend" placeholder="Search ...">
+            <br>
+        </form>
+        <button class="btn btn-add" type="submit">Add</button>
+    </div>
+
+    <div class="friend-box">
+        <div class="panel" id="friends-grp">
+            <h2>Groups</h2>
             <ul>
-            {% for friend in friendList %}
-              <li>
-                  {{ friend }} -
-                  <a href="{{ url_for('friend_schedule', friend_username=friend) }}">View Schedule</a>
-            </li>
-            {% endfor %}
+                {% for group in friendGroups.keys() %}
+                <li>
+                    <a href="{{ url_for('friends') }}?group={{ group }}" {% if selectedGroup==group %}
+                        style="font-weight:bold;" {% endif %}>
+                        {{ group }}
+                    </a>
+                </li>
+                {% endfor %}
             </ul>
-        
-            {% else %}
-        <p>No friends yet!</p>
-        {%  endif%}
+        </div>
 
-    </body>
+        <div class="panel" id="friends-list">
+            <h2>
+                {% if selectedGroup %}
+                Friends in {{ selectedGroup }}
+                {% else %}
+                All Friends
+                {% endif %}
+            </h2>
+            <ul id="friends-list">
+                {% for friend in friendList %}
+                <li>
+                    {{ friend }} - <a href="{{ url_for('friend_schedule', friend_username=friend) }}">View Schedule</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="panel" id="friends-calendar">
+            <h2>Schedule</h2>
+            <ul id="friends-calendar-list"></ul>
+        </div>
+    </div>
+
+    <script src="friends.js"></script>
+
+</body>
+
 </html>
