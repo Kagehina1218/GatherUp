@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title> Friends</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='friends.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -14,8 +15,10 @@
         <form class="search-bar-friend" method="POST" action="/addViewer">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" name="friend" placeholder="Search ...">
+            
+            <button class="btn btn-add" type="submit">Add</button>
+
         </form>
-        <button class="btn btn-add" type="submit">Add</button>
     </div>
 
     <div class="friend-box">

@@ -1,13 +1,16 @@
 import speech_recognition as sp
+import time
 
 def nlp():
     rec = sp.Recognizer()
 
     with sp.Microphone() as source:
+        
+        rec.adjust_for_ambient_noise(source, duration=0.5)
+        time.sleep(1)
         print("Speaking Now")
-        rec.adjust_for_ambient_noise(source)
-        rec.pause_threshold = 1.5
-        audio = rec.listen(source, timeout = 10, phrase_time_limit = 20)
+        rec.pause_threshold = 2.0
+        audio = rec.listen(source, timeout = 10, phrase_time_limit = 25)
 
     print("moving to converting")
 

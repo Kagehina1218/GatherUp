@@ -139,14 +139,18 @@ def demo():
 
     if request.method == "POST":
         username = session.get('username')
-        item = request.form.get("schedule_item")
-        if item:
+        item = request.form.get("schedule_item", "")
+        print("item was: ", repr(item))
+        if item == "":
             text = nlp()
             if text:
+                print('inside if')
                 text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period) If not enough information, output the message saying 'Wrong'}"
                 responseText = generate_schedule(text)
                 start = responseText.find('[')
                 end = responseText.rfind(']')
+                
+                print("gemeni response: ", responseText)
                 if responseText == 'Wrong' or start == -1 or end == -1:
                     print("Invalid schedule format received.")
                 else:
@@ -157,6 +161,26 @@ def demo():
                         return redirect(url_for("schedule"))
                     except json.JSONDecodeError:
                         print("Error decoding JSON.")
+        else:
+            print("inside else")
+            text = item
+            text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period) If not enough information, output the message saying 'Wrong'}"
+            responseText = generate_schedule(text)
+            start = responseText.find('[')
+            end = responseText.rfind(']')
+                
+            print("gemeni response: ", responseText)
+            if responseText == 'Wrong' or start == -1 or end == -1:
+                print("Invalid schedule format received.")
+            else:
+                schText = responseText[start:end + 1]
+                try:
+                    schObj = json.loads(schText)
+                    add_schedule(username, schObj)
+                    return redirect(url_for("schedule"))
+                except json.JSONDecodeError:
+                    print("Error decoding JSON.")
+
 
     return render_template("demo.html", mySchedule=schedule, text=responseText or "")
 
@@ -171,7 +195,7 @@ def schedule():
 def add_viewer_route():
     user = session.get('username')
     friend = request.form.get("friend")
-
+    print("woring add viewer?")
     if add_viewer(user, friend):
         message = f"{friend} added as viewer."
     else:
