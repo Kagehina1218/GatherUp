@@ -136,7 +136,13 @@ def demo():
     user = session.get('username')
     schedule = get_schedule(user) or []
     responseText = None
-
+    prompt = """{Turn what I inputed before into a schedule for the day
+                   give it in the json format: 
+                   - "Activity Number" (optional; if not provided in the input, default to 1)
+                   - "Description" (what the activity is)
+                   - "Time Period" (the time it will take place; if a duration is not provided, accept a specific time and assume a number as the time and accept as a string)
+                If the information I provide is insufficient to create a schedule, respond with: "Wrong".}
+            """
     if request.method == "POST":
         username = session.get('username')
         item = request.form.get("schedule_item", "")
@@ -145,7 +151,7 @@ def demo():
             text = nlp()
             if text:
                 print('inside if')
-                text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period) If not enough information, output the message saying 'Wrong'}"
+                text += prompt
                 responseText = generate_schedule(text)
                 start = responseText.find('[')
                 end = responseText.rfind(']')
@@ -164,7 +170,7 @@ def demo():
         else:
             print("inside else")
             text = item
-            text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period) If not enough information, output the message saying 'Wrong'}"
+            text += prompt
             responseText = generate_schedule(text)
             start = responseText.find('[')
             end = responseText.rfind(']')

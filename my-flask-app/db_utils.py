@@ -48,7 +48,6 @@ def add_schedule(username, new_item):
     return {"message": "Schedule item added successfully!", "status": "success"}
 
 
-
 def get_schedule(username):
 
     user = users_table.get(User.username == username)
