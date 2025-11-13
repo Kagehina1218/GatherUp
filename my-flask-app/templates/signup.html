@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Gather up Signup </title>
-        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 
-    </head>
-    <body>
+<head>
+    <title>Gather up Signup</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
 
-        <h1>Gather UP Signup here</h1>
-        <form action = "/signup" method = "POST">
-            <input type = "text" name = "username"><br>
-            <input type = "text" name = "password"> <br>
-            <button class="btn btn-login" type = "submit" value = "Signup"> Signup</button>
-        </form>
-        
-        <br>
-        <br>
-         <a class="btn btn-signup" href = "{{ url_for('login')}}" >Login</a>
-    </body>
+</head>
+
+<body>
+    <div class="box-wrapper-center">
+        <div class="login-box">
+            <h1>Welcome to GatherUp</h1>
+            <h3>Please sign up here</h3>
+            <form action="/signup" method="POST">
+                <label for="username">Username</label>
+                <input type="text" name="username">
+
+                <label for="username">Password</label>
+                <input type="text" name="password"> 
+                <button class="btn btn-login" type="submit" value="Signup"> Signup</button>
+            </form>
+
+            <p class="signup-chose">
+                Already have an account? <a href="{{url_for('login')}}">Login here</a>
+            </p>
+
+        </div>
+    </div>
+</body>
+
 </html>

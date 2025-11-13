@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Testing Page</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-    </head>
-    <body>
-        {% include 'navbar.html'%}
-        <h1>Gemini Response below</h1>
-        {{ text }}
 
-        <form action = "/demo" method = "POST">
-            <button class="btn btn-login" type = "submit">Create Schedule</button> 
+<head>
+    <title> Testing Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='demo.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    {% include 'navbar.html'%}
+    <div class="box-wrapper-center-demo">
+        <h1>What would you like to add to your schedule?</h1>
+        <h2>You can type or use voice input</h2>
+
+        <form id="scheduleForm" action="/demo" method="POST">
+            <div class="input-group">
+                <input type="text" id="scheduleInput" name="schedule_item" placeholder="e.g. Meeting at 3 PM">
+                <button type="submit" id="micButton" class="btn-mic">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+            </div>
+            <!-- <button type="button">Create Schedule</button> -->
         </form>
 
-        <br>
-        <br>
-            
-        <form class="search-bar" method= "POST" action="/addViewer">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name = "friend" placeholder="Search ...">
-            <br>
-            <button class="btn btn-add" type = "submit">Add</button> 
-        </form>
+        <div class="schedule-list" id="scheduleList"></div>
 
-    </body>
+        <form class="search-bar" method="POST" id="friend-form" action="/addViewer" id="search-bar-demo"
+            style="display: none;">
+            <input type="text" name="friend" placeholder="Search ...">
+            <button class="btn btn-add" type="submit" id="demo-add">Add</button>
+        </form>
+    </div>
+</body>
+
 </html>

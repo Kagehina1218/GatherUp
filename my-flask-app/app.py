@@ -1,56 +1,23 @@
 from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
 
 import json
-from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup
+from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule
 from gemini_utils import generate_schedule
 from nlp_utils import nlp
+import speech_recognition as sp
 
 app = Flask(__name__)
 app.secret_key = "secretKey222"
 
 @app.route("/", methods = ["GET"])
 def home():
-    # username = "kain"
-    # password = "johnson"
-
-    # result = create_user(username, password)
-    # print(result)
-
     return render_template("login.html")
-
 
 @app.route("/mySchedule", methods = ["GET"])
 def mySchedule():
     myS = get_schedule(session.get('username')) or ""
     print("trying to get schedule")
     return render_template("schedule.html", mySchedule = myS)
-
-@app.route("/demo" , methods = ["GET", "POST"])
-def demo():
-    responseText = None
-
-    if request.method == "POST":
-        text = nlp()
-        print(text)
-        
-        responseText = None
-
-        if text:
-            text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period)}"
-
-        responseText = generate_schedule(text)
-    
-        start = responseText.find('[')
-        end = responseText.rfind(']')
-        schText = responseText[start:end + 1]
-        schObj = json.loads(schText)
-        
-        res = update_schedule(session.get('username'), schObj)
-        
-        
-        print(res, type(res))
-
-    return render_template("demo.html", text = responseText or "")
 
 @app.route("/logout")
 def logout():
@@ -73,8 +40,6 @@ def login():
                 session['username'] = username
                 print("session user: ", session.get('username'))
                 return redirect(url_for('demo'))
-            
-
             
         except Exception as e:
             print(e)
@@ -139,7 +104,7 @@ def friends():
     
     selected_group = request.args.get("group", None)
 
-    friend_groups = viewableFriendsByGroup(username)  # {"Family": ["bb"], "School": ["aa"], ...}
+    friend_groups = viewableFriendsByGroup(username) 
 
     if selected_group and selected_group in friend_groups:
         group_friends = friend_groups[selected_group]
@@ -152,7 +117,6 @@ def friends():
         selectedGroup=selected_group,
         friendList=group_friends
     )
-
 
 @app.route("/friend_schedule/<friend_username>", methods = ["GET"])
 def friend_schedule(friend_username):
@@ -167,12 +131,53 @@ def friend_schedule(friend_username):
     print("Not allowed")
     return redirect(url_for("friends"))
 
+@app.route("/demo", methods=["GET", "POST"])
+def demo():
+    user = session.get('username')
+    schedule = get_schedule(user) or []
+    responseText = None
+
+    if request.method == "POST":
+        username = session.get('username')
+        item = request.form.get("schedule_item")
+        if item:
+            text = nlp()
+            if text:
+                text += "-->{Turn what I inputed before into a schedule for the day--> give it in the json format: (Activity Number, Description, Time Period) If not enough information, output the message saying 'Wrong'}"
+                responseText = generate_schedule(text)
+                start = responseText.find('[')
+                end = responseText.rfind(']')
+                if responseText == 'Wrong' or start == -1 or end == -1:
+                    print("Invalid schedule format received.")
+                else:
+                    schText = responseText[start:end + 1]
+                    try:
+                        schObj = json.loads(schText)
+                        add_schedule(username, schObj)
+                        return redirect(url_for("schedule"))
+                    except json.JSONDecodeError:
+                        print("Error decoding JSON.")
+
+    return render_template("demo.html", mySchedule=schedule, text=responseText or "")
+
+@app.route("/schedule")
+def schedule():
+    user = session.get('username')
+    schedule = get_schedule(user) or []
+    return render_template("schedule.html", mySchedule=schedule)
 
 
-@app.route("/calendar", methods = ["POST", "GET"])
-def calendar():
-    print("inside calendar page")
-    return render_template('calendar.html')
+@app.route("/addViewer", methods=["POST"])
+def add_viewer_route():
+    user = session.get('username')
+    friend = request.form.get("friend")
+
+    if add_viewer(user, friend):
+        message = f"{friend} added as viewer."
+    else:
+        message = "Could not add friend."
+
+    return redirect(url_for("schedule"))
 
 if __name__ == "__main__":
     app.run(debug=True)

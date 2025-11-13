@@ -31,6 +31,24 @@ def update_schedule(username, schedule):
     users_table.update({"schedule": schedule}, User.username == username)
     return {"message": "Schedule updated successfully!", "status": "success"}
 
+def add_schedule(username, new_item):
+    user = users_table.get(User.username == username)
+    if not user:
+        return {"message": "User not found", "status": "error"}
+
+    current_schedule = user.get("schedule", [])
+
+    for item in new_item:
+        item["Activity Number"] = len(current_schedule) + 1
+
+    current_schedule.extend(new_item)
+
+    users_table.update({"schedule": current_schedule}, User.username == username)
+
+    return {"message": "Schedule item added successfully!", "status": "success"}
+
+
+
 def get_schedule(username):
 
     user = users_table.get(User.username == username)

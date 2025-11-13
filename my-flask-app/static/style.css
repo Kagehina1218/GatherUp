@@ -37,7 +37,7 @@ body {
   transition: color 0.3s;
 }
 
-.nav-page a:hover {
+.nav-page a:hover, .nav-page a.active {
   color: #2d2fad; 
 }
 
@@ -75,6 +75,15 @@ body {
   font-size: 16px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+}
+
+.box-wrapper-center {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  width: fit-content; 
+  margin: 100px auto; 
 }
 
 .search-bar {

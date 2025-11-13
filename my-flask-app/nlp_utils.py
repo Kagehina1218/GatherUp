@@ -7,7 +7,6 @@ def nlp():
         print("Speaking Now")
         rec.adjust_for_ambient_noise(source)
         rec.pause_threshold = 1.5
-
         audio = rec.listen(source, timeout = 10, phrase_time_limit = 20)
 
     print("moving to converting")

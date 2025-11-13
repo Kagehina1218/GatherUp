@@ -20,14 +20,16 @@
                     "Time Period": "Evening"
                 }
             ],
-
             "viewer_on": [
                 "bb"
-            ], 
-
+            ],
             "groups": {
-                "Family": ["bb"],
-                "School": ["aa"]
+                "Family": [
+                    "bb"
+                ],
+                "School": [
+                    "aa"
+                ]
             }
         },
         "2": {
@@ -64,10 +66,13 @@
                 "test",
                 "bb"
             ],
-
             "groups": {
-                "Family": ["test"],
-                "School": ["bb"]
+                "Family": [
+                    "test"
+                ],
+                "School": [
+                    "bb"
+                ]
             }
         },
         "3": {
@@ -75,12 +80,16 @@
             "password": "b",
             "schedule": [],
             "viewer_on": [
-                "aa"
+                "aa",
+                "test"
             ],
-
             "groups": {
-                "Family": ["test"],
-                "School": ["aa"]
+                "Family": [
+                    "test"
+                ],
+                "School": [
+                    "aa"
+                ]
             }
         }
     }
