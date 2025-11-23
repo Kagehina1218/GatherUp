@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
-
+from mail_utils import config_mail
 import json
 from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule, get_email
 from gemini_utils import generate_schedule
@@ -8,6 +8,8 @@ import speech_recognition as sp
 
 app = Flask(__name__)
 app.secret_key = "secretKey222"
+
+config_mail(app)
 
 @app.route("/", methods = ["GET"])
 def home():
@@ -165,6 +167,7 @@ def demo():
                     try:
                         schObj = json.loads(schText)
                         add_schedule(username, schObj)
+                    
                         return redirect(url_for("schedule"))
                     except json.JSONDecodeError:
                         print("Error decoding JSON.")

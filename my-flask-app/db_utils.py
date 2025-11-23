@@ -24,6 +24,8 @@ def check_user(username, password):
     return False
 
 def update_schedule(username, schedule):
+    print("inside update schedule")
+
     existing = users_table.get(User.username == username)
     
     if not existing:
@@ -31,24 +33,20 @@ def update_schedule(username, schedule):
 
     users_table.update({"schedule": schedule}, User.username == username)
 
-    # have to find everyone who is a viewer on __username
-    friends = users_to_mail(username)
 
-    message = "Your Friend " + username + "updated their schedule, check now"
-
-    send_gmail(friends, "Gatherup notification", message)
 
     return {"message": "Schedule updated successfully!", "status": "success"}
 
 
 def users_to_mail(username):
+    print("trying to get the emails to mail")
     results = []
     allUsers = users_table.all()
 
     for user in allUsers:
         viewerList = user.get("viewer_on", [])
         if username in viewerList:
-            results.append(username['email'])
+            results.append(user.get("email"))
     return results
 
 def add_schedule(username, new_item):
@@ -64,6 +62,14 @@ def add_schedule(username, new_item):
     current_schedule.extend(new_item)
 
     users_table.update({"schedule": current_schedule}, User.username == username)
+
+    # have to find everyone who is a viewer on __username
+    friends = users_to_mail(username)
+
+    message = "Your Friend " + username + "updated their schedule, check now"
+    print(message)
+
+    send_gmail(username, friends, "Gatherup notification", message)
 
     return {"message": "Schedule item added successfully!", "status": "success"}
 
