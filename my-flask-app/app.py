@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
 
 import json
-from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule
+from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule, get_email
 from gemini_utils import generate_schedule
 from nlp_utils import nlp
 import speech_recognition as sp
@@ -54,8 +54,9 @@ def signup():
         try:
             username = request.form.get('username')
             password = request.form.get('password')
+            email = request.form.get('email')
 
-            result = create_user(username, password)
+            result = create_user(username, password, email)
 
             print("inside post--", result)
 

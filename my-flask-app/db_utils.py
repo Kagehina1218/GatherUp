@@ -1,16 +1,17 @@
 from tinydb import TinyDB, Query
+from mail_utils import send_gmail
 
 db = TinyDB("db.json")
 
 users_table = db.table("users")
 User = Query()
 
-def create_user(username, password):
+def create_user(username, password, email):
     existing = users_table.get(User.username == username)
     if existing:
         return {"message": "user already exists!", "status": "error"}
 
-    users_table.insert({"username": username, "password": password, "schedule": [], "viewer_on": []})
+    users_table.insert({"username": username, "email": email, "password": password, "schedule": [], "viewer_on": []})
     return {"message": "Signup successful!", "status": "success"}
 
 
@@ -29,7 +30,26 @@ def update_schedule(username, schedule):
         return {"message": "User not found", "status": "error"}
 
     users_table.update({"schedule": schedule}, User.username == username)
+
+    # have to find everyone who is a viewer on __username
+    friends = users_to_mail(username)
+
+    message = "Your Friend " + username + "updated their schedule, check now"
+
+    send_gmail(friends, "Gatherup notification", message)
+
     return {"message": "Schedule updated successfully!", "status": "success"}
+
+
+def users_to_mail(username):
+    results = []
+    allUsers = users_table.all()
+
+    for user in allUsers:
+        viewerList = user.get("viewer_on", [])
+        if username in viewerList:
+            results.append(username['email'])
+    return results
 
 def add_schedule(username, new_item):
     user = users_table.get(User.username == username)
@@ -59,6 +79,18 @@ def get_schedule(username):
     sch = user.get('schedule', [])
 
     return sch
+
+def get_email(username):
+
+    user = users_table.get(User.username == username)
+    
+    if not user:
+        print("User not found")
+        return None
+    
+    em = user.get('email', "")
+
+    return em
 
 def add_viewer(username, friendUsername):
 
