@@ -19,6 +19,12 @@
           Friends
         </a>
       </li>
+      <li>
+        <a href = "{{url_for('agent')}}" 
+           class = "{% if request.endpoint == 'agent' %} active {% endif %}">
+          Agent
+        </a>
+      </li>
     </ul>
   </div>
 

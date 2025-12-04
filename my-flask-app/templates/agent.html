@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agent</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='agent.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div>
+        <h1><i class="fa-regular fa-lightbulb"></i>Quick Intro</h1>
+        <p>Get intelligent recommendations for meetings and activities based on your schedule patterns and friend
+            availability</p>
+    </div>
+    <div>
+        <h1>Recommended Meeting Times</h1>
+        <p>AI-powered suggestions based on activity patterns and friend availability</p>
+        <button onclick="getAI()">Generate AI Schedule</button>
+
+        <pre id="ai_output"></pre>
+
+        <script>
+            async function getAI() {
+                let response = await fetch(`/recommend?username=test`);
+                let data = await response.json();
+                document.getElementById("ai_output").textContent = data.recommendation;
+            }
+        </script>
+
+
+    </div>
+
+    <div>
+        <h1>How AI Agent Works</h1>
+        <ul>
+            <li>Pattern Recognition</li>
+            <li>Group Matching</li>
+            <li>Smart Recommendations</li>
+        </ul>
+    </div>
+</body>
+
+</html>

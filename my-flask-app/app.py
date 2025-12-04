@@ -2,8 +2,10 @@ from flask import Flask, render_template, request, jsonify, session, url_for, re
 from mail_utils import config_mail
 import json
 from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule, get_email
-from gemini_utils import generate_schedule
+from gemini_utils import generate_output
 from nlp_utils import nlp
+from agent.schedule_recommend import schedule_recommend
+
 import speech_recognition as sp
 
 app = Flask(__name__)
@@ -20,6 +22,10 @@ def mySchedule():
     myS = get_schedule(session.get('username')) or ""
     print("trying to get schedule")
     return render_template("schedule.html", mySchedule = myS)
+
+@app.route("/agent", methods = ["GET"])
+def agent():
+    return render_template("agent.html")
 
 @app.route("/logout")
 def logout():
@@ -155,7 +161,7 @@ def demo():
             if text:
                 print('inside if')
                 text += prompt
-                responseText = generate_schedule(text)
+                responseText = generate_output(text)
                 start = responseText.find('[')
                 end = responseText.rfind(']')
                 
@@ -175,7 +181,7 @@ def demo():
             print("inside else")
             text = item
             text += prompt
-            responseText = generate_schedule(text)
+            responseText = generate_output(text)
             start = responseText.find('[')
             end = responseText.rfind(']')
                 
@@ -212,6 +218,11 @@ def add_viewer_route():
         message = "Could not add friend."
 
     return redirect(url_for("schedule"))
+@app.route("/recommend", methods=["GET"])
+def recommend():
+    username = request.args.get("username")
+    output = schedule_recommend(username)
+    return jsonify({"recommendation": output})
 
 if __name__ == "__main__":
     app.run(debug=True)

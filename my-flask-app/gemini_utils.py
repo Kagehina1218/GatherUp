@@ -12,7 +12,7 @@ if not API_KEY:
 
 genai.configure(api_key=API_KEY)
 
-def generate_schedule(prompt):
+def generate_output(prompt):
     model = genai.GenerativeModel('gemini-2.5-flash-lite')
     response = model.generate_content(prompt)
     return response.text
