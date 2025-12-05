@@ -226,3 +226,30 @@ def recommend():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/removeViewer", methods=["POST"])
+def remove_viewer_route():
+    user = session.get('username')
+    friend = request.form.get("friend")
+
+    if remove_viewer(user, friend):
+        print(f"Removed {friend} from viewers.")
+    else:
+        print("Could not remove viewer.")
+
+    return redirect(url_for("friends"))
+
+from db_utils import remove_schedule_item
+
+
+@app.route("/removeActivity", methods=["POST"])
+def remove_activity():
+    username = session.get('username')
+    activity_num = int(request.form.get("activity"))
+
+    if remove_schedule_item(username, activity_num):
+        print("Activity removed.")
+    else:
+        print("Could not remove activity.")
+
+    return redirect(url_for("schedule"))
