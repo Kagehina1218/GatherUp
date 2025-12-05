@@ -151,3 +151,34 @@ def add_friend_to_group(username, friend_username, group_name):
 
     return {"message": f"{friend_username} added to group {group_name}", "status": "success"}
 
+def remove_viewer(username, friendUsername):
+    # username = the user who wants to stop sharing
+    # friendUsername = the friend to remove
+    friend = users_table.get(User.username == friendUsername)
+    if not friend:
+        return False
+
+    viewers_list = friend.get('viewer_on', [])
+    if username in viewers_list:
+        viewers_list.remove(username)
+        users_table.update({'viewer_on': viewers_list}, User.username == friendUsername)
+        return True
+    
+    return False
+
+
+def remove_schedule_item(username, activity_number):
+    user = users_table.get(User.username == username)
+    if not user:
+        return False
+
+    schedule = user.get("schedule", [])
+    new_schedule = [item for item in schedule if item.get("Activity Number") != activity_number]
+
+    # Re-index Activity Numbers
+    for i, item in enumerate(new_schedule):
+        item["Activity Number"] = i + 1
+
+    users_table.update({"schedule": new_schedule}, User.username == username)
+    return True
+
