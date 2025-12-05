@@ -48,6 +48,12 @@
                 {% for friend in friendList %}
                 <li>
                     {{ friend }} - <a href="{{ url_for('friend_schedule', friend_username=friend) }}">View Schedule</a>
+                    <form action="/removeViewer" method="POST" style="display:inline;"
+                          onsubmit="return confirm('Remove this friend?');">
+                        <input type="hidden" name="friend" value="{{ friend }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                
                 </li>
                 {% endfor %}
             </ul>
