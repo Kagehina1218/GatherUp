@@ -20,6 +20,13 @@
                 <h3>Activity {{activity['Activity Number'] }}</h3>
                 <p><strong>Description:</strong> {{ activity['Description'] }}</p>
                 <p><strong>Time:</strong> {{ activity['Time Period'] }}</p>
+
+                <form action="/removeActivity" method="POST" style="display:inline;" 
+                      onsubmit="return confirm('Are you sure you want to delete this activity?');">
+                    <input type="hidden" name="activity" value="{{ activity['Activity Number'] }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                
             </div>
         {% endfor %}
         </div>
