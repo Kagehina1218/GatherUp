@@ -1,36 +1,62 @@
 .agent-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;   /* left column, right column */
-    gap: 1.5rem;
-    width: fit-content;
-    margin: auto;
+    grid-template-columns: 1fr 1fr;   
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
-
-#agent-intro {
-    grid-column: 1;
+#agent_intro {
+    grid-column: 1 / span 2;
 }
 
-#agent-explain {
-    grid-column: 2;
+#agent_intro p{
+    font-style: italic;
 }
 
-
-#agent-advice {
-    grid-column: 1;
+.agent-cards-row {
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 1rem;
 }
 
-#agent-friend-advice {
-    grid-column: 2;
+.agent-card {
+    flex: 1;
+    min-width: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Your existing card styling */
-.agent-card { 
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  width: 250px;
-  transition: transform 0.2s;
-  max-width: max-content;
+.agent-card h1 {
+    font-size: 1.5rem;
+    color: #2d2fad;
+}
+
+.agent-card p {
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.agent-card button {
+    align-self: flex-start;
+    background-color: #2d2fad;
+    color: white;
+    border: 2px solid #b5aeec;
+    padding: 10px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s ease-in-out;
+}
+
+.agent-card:hover {
+    transform: translateY(-4px);
 }

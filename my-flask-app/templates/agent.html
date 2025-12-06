@@ -12,21 +12,10 @@
     {% include 'navbar.html' %}
 
     <div class="agent-container">
-        <div class = "agent-card" id="agent_intro">
-            <h1><i class ="fa-regular fa-lightbulb"></i>Quick Intro</h1>
-            <p>Get intelligent recommendations for meetings and activities based on your schedule patterns and friend
-                availability</p>
+        <div id="agent_intro">
+            <h1><i class ="fa-regular fa-lightbulb"></i>  Quick Intro</h1>
+            <p>Get intelligent recommendations for meetings and activities based on your schedule patterns and friend availability</p>
         </div>
-
-        <div class = "agent-card" id="agent-explain">
-            <h1>How AI Agent Works</h1>
-            <ul>
-                <li>Pattern Recognition</li>
-                <li>Group Matching</li>
-                <li>Smart Recommendations</li>
-            </ul>
-        </div>
-
         <div class = "agent-card" id="agent-advice">
             <h1>Recommended Schedule</h1>
             <p>AI-powered suggestions based on activity patterns</p>
@@ -44,8 +33,8 @@
         </div>
 
         <div class = "agent-card" id="agent-friend-advice">
-            <h1>Recommended Meeting Times</h1>
-            <p>AI-powered suggestions based on activity patterns and friend availability</p>
+            <h1>Recommended Times</h1>
+            <p>AI-powered suggestions based on friend availability</p>
             <button onclick="getAI()">Generate AI Schedule</button>
 
             <pre id="ai_output"></pre>
