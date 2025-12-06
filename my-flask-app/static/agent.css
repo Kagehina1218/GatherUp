@@ -1,0 +1,36 @@
+.agent-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* left column, right column */
+    gap: 1.5rem;
+    width: fit-content;
+    margin: auto;
+}
+
+
+#agent-intro {
+    grid-column: 1;
+}
+
+#agent-explain {
+    grid-column: 2;
+}
+
+
+#agent-advice {
+    grid-column: 1;
+}
+
+#agent-friend-advice {
+    grid-column: 2;
+}
+
+/* Your existing card styling */
+.agent-card { 
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  width: 250px;
+  transition: transform 0.2s;
+  max-width: max-content;
+}

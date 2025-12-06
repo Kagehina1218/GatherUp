@@ -115,6 +115,10 @@ def friends():
 
     friend_groups = viewableFriendsByGroup(username) 
 
+    all_friends = viewableFriends(username)
+
+    friend_groups["All Friends"] = all_friends
+
     if selected_group and selected_group in friend_groups:
         group_friends = friend_groups[selected_group]
     else:

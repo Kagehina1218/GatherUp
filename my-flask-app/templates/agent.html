@@ -10,36 +10,55 @@
 
 <body>
     {% include 'navbar.html' %}
-    <div>
-        <h1><i class="fa-regular fa-lightbulb"></i>Quick Intro</h1>
-        <p>Get intelligent recommendations for meetings and activities based on your schedule patterns and friend
-            availability</p>
-    </div>
-    <div>
-        <h1>Recommended Meeting Times</h1>
-        <p>AI-powered suggestions based on activity patterns and friend availability</p>
-        <button onclick="getAI()">Generate AI Schedule</button>
 
-        <pre id="ai_output"></pre>
+    <div class="agent-container">
+        <div class = "agent-card" id="agent_intro">
+            <h1><i class ="fa-regular fa-lightbulb"></i>Quick Intro</h1>
+            <p>Get intelligent recommendations for meetings and activities based on your schedule patterns and friend
+                availability</p>
+        </div>
 
-        <script>
-            async function getAI() {
-                let response = await fetch(`/recommend?username=test`);
-                let data = await response.json();
-                document.getElementById("ai_output").textContent = data.recommendation;
-            }
-        </script>
+        <div class = "agent-card" id="agent-explain">
+            <h1>How AI Agent Works</h1>
+            <ul>
+                <li>Pattern Recognition</li>
+                <li>Group Matching</li>
+                <li>Smart Recommendations</li>
+            </ul>
+        </div>
 
+        <div class = "agent-card" id="agent-advice">
+            <h1>Recommended Schedule</h1>
+            <p>AI-powered suggestions based on activity patterns</p>
+            <button onclick="getAI()">Generate AI Schedule</button>
 
-    </div>
+            <pre id="ai_output"></pre>
 
-    <div>
-        <h1>How AI Agent Works</h1>
-        <ul>
-            <li>Pattern Recognition</li>
-            <li>Group Matching</li>
-            <li>Smart Recommendations</li>
-        </ul>
+            <script>
+                async function getAI() {
+                    let response = await fetch(`/recommend?username=test`);
+                    let data = await response.json();
+                    document.getElementById("ai_output").textContent = data.recommendation;
+                }
+            </script>
+        </div>
+
+        <div class = "agent-card" id="agent-friend-advice">
+            <h1>Recommended Meeting Times</h1>
+            <p>AI-powered suggestions based on activity patterns and friend availability</p>
+            <button onclick="getAI()">Generate AI Schedule</button>
+
+            <pre id="ai_output"></pre>
+
+            <script>
+                async function getAI() {
+                    let response = await fetch(`/recommend?username=test`);
+                    let data = await response.json();
+                    document.getElementById("ai_output").textContent = data.recommendation;
+                }
+            </script>
+        </div>
+
     </div>
 </body>
 

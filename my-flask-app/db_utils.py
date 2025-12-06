@@ -116,7 +116,6 @@ def add_viewer(username, friendUsername):
     return True
 
 def viewableFriends(username):
-    
     user = users_table.get(User.username == username)
     
     if not user:
@@ -147,7 +146,8 @@ def add_friend_to_group(username, friend_username, group_name):
 
     if friend_username not in groups[group_name]:
         groups[group_name].append(friend_username)
-        users_table.update({"groups": groups}, User.username == username)
+    
+    users_table.update({"groups": groups}, User.username == username)
 
     return {"message": f"{friend_username} added to group {group_name}", "status": "success"}
 
