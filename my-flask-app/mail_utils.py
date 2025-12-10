@@ -4,11 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-
 mail = Mail()
-
-
 
 def config_mail(flaskApp):
     flaskApp.config['MAIL_SERVER'] = 'smtp.gmail.com'

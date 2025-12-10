@@ -30,11 +30,12 @@ def update_schedule(username, schedule):
     
     if not existing:
         return {"message": "User not found", "status": "error"}
+    
+    for activity in schedule:
+        if "Participants" not in activity:
+            activity["Participants"] = []
 
     users_table.update({"schedule": schedule}, User.username == username)
-
-
-
     return {"message": "Schedule updated successfully!", "status": "success"}
 
 
@@ -58,6 +59,8 @@ def add_schedule(username, new_item):
 
     for item in new_item:
         item["Activity Number"] = len(current_schedule) + 1
+        if "Participants" not in item:
+            item["Participants"] = []
 
     current_schedule.extend(new_item)
 
@@ -125,6 +128,17 @@ def viewableFriends(username):
     friendlist = user.get('viewer_on', [])
 
     return friendlist
+
+def getFriendsSchedule(friendlist):
+    schedules = []
+    for username in friendlist:
+        user = users_table.get(User.username == username)
+        if not user:
+            print("User not found")
+            return None
+        sch = user.get('schedule', [])
+        schedules.append(sch)
+    return schedules
     
 def viewableFriendsByGroup(username):
     user = users_table.get(User.username == username)

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, url_for, redirect, session
-from mail_utils import config_mail
+from mail_utils import config_mail, send_gmail
 import json
-from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule, get_email
+from db_utils import create_user, check_user, update_schedule, get_schedule, add_viewer, viewableFriends, add_friend_to_group, viewableFriendsByGroup, add_schedule, get_email, remove_schedule_item, remove_viewer
 from gemini_utils import generate_output
 from nlp_utils import nlp
 from agent.schedule_recommend import schedule_recommend
@@ -222,14 +222,6 @@ def add_viewer_route():
         message = "Could not add friend."
 
     return redirect(url_for("schedule"))
-@app.route("/recommend", methods=["GET"])
-def recommend():
-    username = request.args.get("username")
-    output = schedule_recommend(username)
-    return jsonify({"recommendation": output})
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
 @app.route("/removeViewer", methods=["POST"])
 def remove_viewer_route():
@@ -243,9 +235,6 @@ def remove_viewer_route():
 
     return redirect(url_for("friends"))
 
-from db_utils import remove_schedule_item
-
-
 @app.route("/removeActivity", methods=["POST"])
 def remove_activity():
     username = session.get('username')
@@ -257,3 +246,40 @@ def remove_activity():
         print("Could not remove activity.")
 
     return redirect(url_for("schedule"))
+
+@app.route("/suggest", methods=['GET'])
+def suggest():
+    user = session.get('username')
+
+    if not user:
+        return redirect('/login')  
+    
+    ai_result = schedule_recommend(user) 
+    
+    return render_template(
+        "suggested_schedule.html",
+        suggestion=ai_result
+    )
+
+@app.route("/acceptSuggestion", methods=["POST"])
+def acceptSuggestion():
+    new_schedule = request.form.get("json_data")
+    new_schedule = json.loads(new_schedule)
+
+    user = session.get('username')
+    update_schedule(user, new_schedule)
+
+    for activity in new_schedule:
+        part = activity.get("Participants", [])
+        if part:
+            sender_email = get_email(user)
+            recipients = [get_email(p) for p in part if get_email(p)]
+            if recipients:
+                for r in recipients:
+                    msg = f"{user} added a new activity '{activity['Description']}' scheduled at {activity['Time Period']}. You're listed as a participant."
+                    send_gmail(sender_email, r, "New Schedule Activity", msg)
+
+    return redirect(url_for('schedule', highlight="myschedule"))
+
+if __name__ == "__main__":
+    app.run(debug=True)

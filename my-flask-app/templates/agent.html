@@ -12,40 +12,40 @@
     {% include 'navbar.html' %}
 
     <div class="agent-container">
-        <div id="agent_intro">
-            <h1><i class ="fa-regular fa-lightbulb"></i>  Quick Intro</h1>
-            <p>Get intelligent recommendations for meetings and activities based on your schedule patterns and friend availability</p>
+        <div id="agent_intro" class="quick-intro-container">
+            <h1><i class="fa-regular fa-lightbulb"></i> Quick Intro</h1>
+            <p class="subtitle">
+                Get intelligent recommendations for meetings and activities based on your schedule patterns and friend
+                availability
+            </p>
+
+            <div class="quick-intro-features">
+                <div class="quick-feature">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <div>
+                        <h4>Pattern Recognition</h4>
+                        <p>Analyzes your schedule to identify common activity patterns and preferred time slots.</p>
+                    </div>
+                </div>
+
+                <div class="quick-feature">
+                    <i class="fa-solid fa-users icon"></i>
+                    <div>
+                        <h4>Group Matching</h4>
+                        <p>Finds friends with similar activities and suggests optimal meeting times.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class = "agent-card" id="agent-advice">
-            <h1>Recommended Schedule</h1>
-            <p>AI-powered suggestions based on activity patterns</p>
-            <button onclick="getAI()">Generate AI Schedule</button>
 
-            <pre id="ai_output"></pre>
-
-            <script>
-                async function getAI() {
-                    let response = await fetch(`/recommend?username=test`);
-                    let data = await response.json();
-                    document.getElementById("ai_output").textContent = data.recommendation;
-                }
-            </script>
-        </div>
-
-        <div class = "agent-card" id="agent-friend-advice">
-            <h1>Recommended Times</h1>
-            <p>AI-powered suggestions based on friend availability</p>
-            <button onclick="getAI()">Generate AI Schedule</button>
-
-            <pre id="ai_output"></pre>
-
-            <script>
-                async function getAI() {
-                    let response = await fetch(`/recommend?username=test`);
-                    let data = await response.json();
-                    document.getElementById("ai_output").textContent = data.recommendation;
-                }
-            </script>
+        <div class="agent-card-row">
+            <div class="agent-card" id="agent-advice">
+                <h1>Recommended Schedule</h1>
+                <p>AI-powered suggestions based on activity patterns and friend availability. Will automatically update your schedule page and send out the notification if you accept the new schedule.</p>
+                <form action="/suggest" method="GET">
+                    <button type="submit">Generate AI Schedule</button>
+                </form>
+            </div>
         </div>
 
     </div>

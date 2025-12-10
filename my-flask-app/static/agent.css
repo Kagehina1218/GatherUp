@@ -1,31 +1,89 @@
 .agent-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;   
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    justify-items: center; 
     gap: 2rem;
     max-width: 1100px;
     margin: 2rem auto;
     padding: 1rem;
 }
 
-#agent_intro {
-    grid-column: 1 / span 2;
+.quick-intro-container {
+    background: #fff;
+    border-radius: 14px;
+    padding: 2rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    width: 100%;
 }
 
-#agent_intro p{
-    font-style: italic;
-}
-
-.agent-cards-row {
-    grid-column: 1 / span 2;
+#agent_intro h1 {
+    font-size: 1.6rem;
+    color: #2d2fad;
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.quick-intro-container .subtitle {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.quick-intro-features {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.quick-feature {
+    flex: 1;
+    min-width: 220px;
+    background: #f7f6ff;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    border-left: 4px solid #2d2fad;
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+}
+
+.quick-feature .icon {
+    font-size: 1.6rem;
+    color: #2d2fad;
+    margin-top: 0.2rem;
+}
+
+.quick-feature h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.quick-feature p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.agent-card-row {
+    display: flex;
+    justify-content: center; 
     gap: 2rem;
-    margin-top: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .agent-card {
     flex: 1;
-    min-width: 0;
+    max-width: 815px; 
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -36,13 +94,16 @@
 }
 
 .agent-card h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #2d2fad;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #b5aeec;
 }
 
 .agent-card p {
-    color: #444;
-    margin-bottom: 1rem;
+    margin-top: 2px;
+    color: #555;
+    font-size: 0.95rem;
 }
 
 .agent-card button {

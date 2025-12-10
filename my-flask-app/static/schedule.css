@@ -32,10 +32,32 @@
 
 
 .content {
-    
     display: flex;            
     flex-wrap: wrap;          
     justify-content: center; 
     gap: 20px;                
     padding: 2rem;            
+}
+
+.participants-box {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #f1f1f5;
+    border-left: 4px solid #8f85d9;
+    border-radius: 6px;
+}
+
+.participants-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.participant {
+    background-color: #8f85d9;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
 }
