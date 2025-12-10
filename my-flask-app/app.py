@@ -79,32 +79,6 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route("/addViewer", methods = ["POST"])
-def addViewer():
-    if request.method == "POST":
-        try: 
-            user = session.get('username')
-            friend = request.form.get('friend')
-
-            if user == friend:
-                print("can't add yourself")
-                return redirect(url_for('demo'))
-            
-            result = add_viewer(user, friend)
-
-            if result:
-                print("Added Viewer")    
-                return redirect(url_for('friends'))
-            print("Didn't add the viewer")  
-
-            return redirect(url_for('demo'))
-              
-        except Exception as e:
-            print(e)
-    
-    print("inside friend page")
-    return redirect(url_for('demo'))
-
 @app.route("/friends", methods = ["GET"])
 def friends():
     username = session.get("username")
