@@ -202,10 +202,7 @@ def remove_viewer_route():
     user = session.get('username')
     friend = request.form.get("friend")
 
-    if remove_viewer(user, friend):
-        print(f"Removed {friend} from viewers.")
-    else:
-        print("Could not remove viewer.")
+    remove_viewer(user, friend)
 
     return redirect(url_for("friends"))
 
