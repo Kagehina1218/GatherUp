@@ -37,7 +37,7 @@ def send_gmail(fromuser, receiver, input_subject, input_body, content_html = Non
         if content_html:
             message_string.html = content_html
         else:
-            message_string.html = "<h2> Hello There, it looks like your friend " + str(fromuser) + " made some changes to there schedule!</h2>"
+            message_string.html = "<h2> Hello There, it looks like your friend " + str(fromuser) + " made some changes to their schedule!</h2>"
 
         mail.send(message_string)
         return "Sent Message"

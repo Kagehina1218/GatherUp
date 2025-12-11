@@ -1,1 +1,292 @@
-{"users": {"1": {"username": "test", "email": "tn", "password": "test", "schedule": [{"Activity Number": 1, "Description": "Go for a walk", "Participants": [], "Time Period": "7:00 AM - 8:00 AM"}, {"Activity Number": 2, "Description": "Suggested Meeting with Kain and Test1", "Participants": ["kain", "test1"], "Time Period": "10:00 AM - 11:00 AM"}, {"Activity Number": 3, "Description": "Go shopping", "Participants": [], "Time Period": "12:00 PM - 1:00 PM"}, {"Activity Number": 4, "Description": "Suggested Meeting with TT", "Participants": ["tt"], "Time Period": "2:00 PM - 3:00 PM"}, {"Activity Number": 5, "Description": "Meeting", "Participants": [], "Time Period": "3:00 PM - 4:00 PM"}, {"Activity Number": 6, "Description": "Go fishing", "Participants": [], "Time Period": "5:00 PM - 6:00 PM"}, {"Activity Number": 7, "Description": "Go fishing", "Participants": [], "Time Period": "7:00 PM - 8:00 PM"}, {"Activity Number": 8, "Description": "Go for a walk", "Participants": [], "Time Period": "9:00 PM - 10:00 PM"}], "viewer_on": ["kain", "test1", "tt"], "groups": {"Close Friends": ["kain", "test1"], "Family": ["tt"], "Gym Buddies": ["kain"]}}, "2": {"username": "kain", "email": "sara@example.com", "password": "a", "schedule": [{"Activity Number": 1, "Description": "Work", "Time Period": "9:00 AM"}, {"Activity Number": 2, "Description": "Lunch", "Time Period": "12:00 PM"}, {"Activity Number": 3, "Description": "Workout", "Time Period": "6:00 PM"}], "viewer_on": ["test", "test1", "tt"], "groups": {"Friends": ["test", "test1"], "Gaming Squad": ["tt"], "Work Crew": ["test1"]}}, "3": {"username": "test1", "email": "2", "password": "test1", "schedule": [{"Activity Number": 1, "Description": "Wake up", "Time Period": "morning"}, {"Activity Number": 2, "Description": "Go for a walk", "Time Period": "afternoon"}, {"Activity Number": 3, "Description": "Go shopping", "Time Period": "night"}, {"Activity Number": 4, "Description": "Go for a walk at night", "Time Period": "evening"}, {"Activity Number": 5, "Description": "Meeting", "Time Period": "12:00 PM"}], "viewer_on": ["kain"], "groups": {"Gym Buddies": ["test"], "Study Group": ["kain", "tt"], "Family": []}}, "4": {"username": "tt", "email": "q", "password": "tt", "schedule": [{"Activity Number": 1, "Description": "Go for a walk", "Time Period": "Morning"}, {"Activity Number": 2, "Description": "Go eat out", "Time Period": "night"}, {"Activity Number": 3, "Description": "Go fishing", "Time Period": "afternoon"}], "viewer_on": ["test1", "test"], "groups": {"Close Friends": ["test1"], "Weekend Crew": ["test", "kain"], "Fishing Buddies": ["test"]}}, "5": {"username": "alex", "email": "alex@example.com", "password": "123", "schedule": [{"Activity Number": 1, "Description": "Breakfast", "Time Period": "8:00 AM"}, {"Activity Number": 2, "Description": "Study", "Time Period": "10:00 AM"}, {"Activity Number": 3, "Description": "Gaming", "Time Period": "8:00 PM"}], "viewer_on": ["test", "kain"], "groups": {"Study Group": ["test1"], "Gaming Friends": ["kain", "tt"], "Family": ["test"]}}, "6": {"username": "sara", "email": "sara@example.com", "password": "456", "schedule": [{"Activity Number": 1, "Description": "Yoga", "Time Period": "7:00 AM"}, {"Activity Number": 2, "Description": "Work", "Time Period": "9:00 AM"}, {"Activity Number": 3, "Description": "Dinner with friends", "Time Period": "7:00 PM"}], "viewer_on": ["alex", "test"], "groups": {"Yoga Friends": ["test"], "Work Friends": ["kain"], "Family": []}}}}
+{
+    "users": {
+        "1": {
+            "username": "test",
+            "email": "tn",
+            "password": "test",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Go for a walk",
+                    "Participants": [],
+                    "Time Period": "7:00 AM - 8:00 AM"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Free time",
+                    "Participants": [],
+                    "Time Period": "8:00 AM - 10:00 AM"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Go fishing with tt",
+                    "Participants": [
+                        "tt"
+                    ],
+                    "Time Period": "10:00 AM - 12:00 PM"
+                },
+                {
+                    "Activity Number": 4,
+                    "Description": "Lunch break",
+                    "Participants": [],
+                    "Time Period": "12:00 PM - 1:00 PM"
+                },
+                {
+                    "Activity Number": 5,
+                    "Description": "Grocery shopping",
+                    "Participants": [],
+                    "Time Period": "1:00 PM - 3:00 PM"
+                },
+                {
+                    "Activity Number": 6,
+                    "Description": "Free time",
+                    "Participants": [],
+                    "Time Period": "3:00 PM - 5:00 PM"
+                },
+                {
+                    "Activity Number": 7,
+                    "Description": "Study session",
+                    "Participants": [],
+                    "Time Period": "5:00 PM - 7:00 PM"
+                },
+                {
+                    "Activity Number": 8,
+                    "Description": "Go eat out with tt",
+                    "Participants": [
+                        "tt"
+                    ],
+                    "Time Period": "7:00 PM - 8:00 PM"
+                },
+                {
+                    "Activity Number": 9,
+                    "Description": "Go for a walk",
+                    "Participants": [],
+                    "Time Period": "8:00 PM - 9:00 PM"
+                },
+                {
+                    "Activity Number": 10,
+                    "Description": "Reading time",
+                    "Participants": [],
+                    "Time Period": "9:00 PM - 10:00 PM"
+                },
+                {
+                    "Activity Number": 11,
+                    "Description": "Wind down",
+                    "Participants": [],
+                    "Time Period": "10:00 PM - 11:00 PM"
+                }
+            ],
+            "viewer_on": [
+                "kain",
+                "test1",
+                "tt"
+            ],
+            "groups": {
+                "Close Friends": [
+                    "kain",
+                    "test1"
+                ],
+                "Family": [
+                    "tt"
+                ],
+                "Gym Buddies": [
+                    "kain"
+                ]
+            }
+        },
+        "2": {
+            "username": "kain",
+            "email": "a@gmail.com",
+            "password": "a",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Work",
+                    "Time Period": "9:00 AM"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Lunch",
+                    "Time Period": "12:00 PM"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Workout",
+                    "Time Period": "6:00 PM"
+                }
+            ],
+            "viewer_on": [
+                "test1",
+                "tt"
+            ],
+            "groups": {
+                "Friends": [
+                    "test",
+                    "test1"
+                ],
+                "Gaming Squad": [
+                    "tt"
+                ],
+                "Work Crew": [
+                    "test1"
+                ]
+            }
+        },
+        "3": {
+            "username": "test1",
+            "email": "2",
+            "password": "test1",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Wake up",
+                    "Time Period": "morning"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Go for a walk",
+                    "Time Period": "afternoon"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Go shopping",
+                    "Time Period": "night"
+                },
+                {
+                    "Activity Number": 4,
+                    "Description": "Go for a walk at night",
+                    "Time Period": "evening"
+                },
+                {
+                    "Activity Number": 5,
+                    "Description": "Meeting",
+                    "Time Period": "12:00 PM"
+                }
+            ],
+            "viewer_on": [
+                "kain"
+            ],
+            "groups": {
+                "Gym Buddies": [
+                    "test"
+                ],
+                "Study Group": [
+                    "kain",
+                    "tt"
+                ],
+                "Family": []
+            }
+        },
+        "4": {
+            "username": "tt",
+            "email": "a@gmail.com",
+            "password": "tt",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Go for a walk",
+                    "Time Period": "Morning"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Go eat out",
+                    "Time Period": "night"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Go fishing",
+                    "Time Period": "afternoon"
+                }
+            ],
+            "viewer_on": [
+                "test1",
+                "test"
+            ],
+            "groups": {
+                "Close Friends": [
+                    "test1"
+                ],
+                "Weekend Crew": [
+                    "test",
+                    "kain"
+                ],
+                "Fishing Buddies": [
+                    "test"
+                ]
+            }
+        },
+        "5": {
+            "username": "alex",
+            "email": "alex@example.com",
+            "password": "123",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Breakfast",
+                    "Time Period": "8:00 AM"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Study",
+                    "Time Period": "10:00 AM"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Gaming",
+                    "Time Period": "8:00 PM"
+                }
+            ],
+            "viewer_on": [
+                "test",
+                "kain"
+            ],
+            "groups": {
+                "Study Group": [
+                    "test1"
+                ],
+                "Gaming Friends": [
+                    "kain",
+                    "tt"
+                ],
+                "Family": [
+                    "test"
+                ]
+            }
+        },
+        "6": {
+            "username": "sara",
+            "email": "sara@example.com",
+            "password": "456",
+            "schedule": [
+                {
+                    "Activity Number": 1,
+                    "Description": "Yoga",
+                    "Time Period": "7:00 AM"
+                },
+                {
+                    "Activity Number": 2,
+                    "Description": "Work",
+                    "Time Period": "9:00 AM"
+                },
+                {
+                    "Activity Number": 3,
+                    "Description": "Dinner with friends",
+                    "Time Period": "7:00 PM"
+                }
+            ],
+            "viewer_on": [
+                "alex",
+                "test"
+            ],
+            "groups": {
+                "Yoga Friends": [
+                    "test"
+                ],
+                "Work Friends": [
+                    "kain"
+                ],
+                "Family": []
+            }
+        }
+    }
+}

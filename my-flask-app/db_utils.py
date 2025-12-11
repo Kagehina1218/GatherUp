@@ -146,6 +146,16 @@ def viewableFriendsByGroup(username):
         return {}
     return user.get("groups", {})
 
+def get_friend_groups(username):
+    groups = viewableFriendsByGroup(username)
+    result = {}
+
+    for group_name, members in groups.items():
+        for m in members:
+            result.setdefault(m, []).append(group_name)
+
+    return result
+
 def add_friend_to_group(username, friend_username, group_name):
     user = users_table.get(User.username == username)
     friend = users_table.get(User.username == friend_username)

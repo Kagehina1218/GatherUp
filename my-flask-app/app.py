@@ -234,23 +234,35 @@ def suggest():
 
 @app.route("/acceptSuggestion", methods=["POST"])
 def acceptSuggestion():
+    print ('Suggesting')
+    recipients = []
     new_schedule = request.form.get("json_data")
     new_schedule = json.loads(new_schedule)
 
     user = session.get('username')
     update_schedule(user, new_schedule)
 
+    sender_email = get_email(user)  
+
     for activity in new_schedule:
-        part = activity.get("Participants", [])
-        if part:
-            sender_email = get_email(user)
-            recipients = [get_email(p) for p in part if get_email(p)]
-            if recipients:
-                for r in recipients:
-                    msg = f"{user} added a new activity '{activity['Description']}' scheduled at {activity['Time Period']}. You're listed as a participant."
-                    send_gmail(sender_email, r, "New Schedule Activity", msg)
+        participants = activity.get("Participants", [])
+
+        recipients = [
+            get_email(p) for p in participants 
+            if get_email(p) and "@" in get_email(p) and get_email(p) != sender_email
+        ]
+        if recipients: 
+            print ('Sending gmail')
+            msg_body = f'''
+            <h2>Hello There!</h2>
+            <p>{user} added a new activity '<strong>{activity['Description']}</strong>' 
+            scheduled at <em>{activity['Time Period']}</em>. You're listed as a participant.</p>
+            '''
+
+            send_gmail(sender_email, recipients, "New Schedule Activity", msg_body)
 
     return redirect(url_for('schedule', highlight="myschedule"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
