@@ -113,9 +113,9 @@ Your app will run at:
 
 | Name | Role |
 |------|------|
-| **Balkarandeep Singh** | Backend, TinyDB, NLP + Speech-to-Text integration |
-| **Meien “Grace” Li** | AI Gemini integration, schedule logic, email notifications |
-| **Meera Bhaskarbhai Vyas** | Frontend, UI/UX, user account pages, dashboard design |
+| **Balkarandeep Singh** | Backend, TinyDB, NLP + Speech-to-Text integration, notification |
+| **Meien “Grace” Li** | AI Gemini integration, schedule logic, frontend, Agentic AI Integration |
+| **Meera Bhaskarbhai Vyas** | UI/UX, user account pages, website design, feature edit, documentation |
 
 ---
 
@@ -128,7 +128,6 @@ Your app will run at:
 | Voice Input via NLP | ✅ Done |
 | Email Notification System | ✅ Done |
 | Schedule Recommendations | ✅ Done |
-| Add-Friend Page | 🟡 In Progress |
 | Deployment | ⏳ Planned |
 
 ---
@@ -160,7 +159,7 @@ For educational and portfolio use only.
 
 ---
 
-# 🙏 Acknowledgements
+# Acknowledgements
 
 - Google Gemini API  
 - Google Speech-to-Text  
