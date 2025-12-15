@@ -47,7 +47,7 @@ GatherUp is a web application designed to simplify group scheduling through inte
 
 ### **AI / NLP**
 - Google Gemini API  
-- Google Speech-to-Text API, Text-to-Speech API  
+- Google Speech-to-Text API
 
 ### **Notifications**
 - Flask-Mail / Flask-Email  
